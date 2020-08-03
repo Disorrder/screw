@@ -1,0 +1,13 @@
+{
+    "compilerOptions": {
+        "outDir": "./build/",
+        "declaration": true,
+        "target": "es2015",
+        "module": "esnext",
+        "moduleResolution": "node",
+        // "strict": true,
+        "allowJs": true,
+        "experimentalDecorators": true
+    },
+    "include": ["src"]
+}

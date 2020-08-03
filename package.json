@@ -1,0 +1,23 @@
+{
+  "name": "@disorrder/screw",
+  "description": "Light-weight library for animating stuff, inspired by Tween and animejs",
+  "version": "1.0.0",
+  "main": "build/screw.js",
+  "engine": {
+    "node": ">=9.0.0"
+  },
+  "scripts": {
+    "build": "webpack --mode production",
+    "build-dev": "webpack --mode development",
+    "start": "npm run build",
+    "test": "npm run build && jest"
+  },
+  "devDependencies": {
+    "clean-webpack-plugin": "^3.0.0",
+    "jest": "^26.2.2",
+    "ts-loader": "^8.0.2",
+    "typescript": "^3.9.7",
+    "webpack": "^4.44.1",
+    "webpack-cli": "^3.3.12"
+  }
+}

@@ -18,7 +18,6 @@ module.exports = {
     },
     module: {
         rules: [
-            // { test: /\.ts$/, include: path.resolve(__dirname), loader: "ts-loader" },
             { test: /\.ts$/, exclude: /node_modules/, loader: "ts-loader" },
         ]
     },

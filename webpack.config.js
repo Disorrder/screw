@@ -6,11 +6,13 @@ const pkg = require('./package.json');
 
 module.exports = {
     context: path.resolve('./src'),
-    entry: './index.ts',
+    entry: {
+        screw: './index.ts',
+    },
     output: {
         path: path.resolve('./build'),
-        filename: "screw.js",
-        library: "Screw",
+        filename: "[name].js",
+        library: "[name]",
         libraryTarget: "umd",
     },
     resolve: {

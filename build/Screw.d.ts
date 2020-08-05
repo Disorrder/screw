@@ -1,6 +1,11 @@
 import EventEmitter from './EventEmitter';
 import Timer from "./Timer";
 import * as easing from './easing';
+interface IPlugin {
+    name: string;
+    description?: string;
+    mutateClass?: (Class: typeof Screw) => void;
+}
 export interface IKeyframe {
     offset?: number | 'prev';
     delay?: number;
@@ -23,6 +28,7 @@ export interface IAnimatable {
     from?: any;
     to?: any;
     by?: any;
+    setter?: (target: any) => void;
     _target: any;
     _delta: any;
 }
@@ -35,6 +41,8 @@ export default class Screw extends EventEmitter {
     static useDefaultAnimation: boolean;
     static items: Set<Screw>;
     static update(time: number): void;
+    static plugins: Set<IPlugin>;
+    static plugin(plugin: IPlugin): void;
     name: string;
     active: boolean;
     keyframes: IKeyframe[];
@@ -61,3 +69,4 @@ export default class Screw extends EventEmitter {
     private _frameRun;
     private _frameComplete;
 }
+export {};

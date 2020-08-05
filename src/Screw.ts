@@ -4,6 +4,12 @@ import { clamp } from "./utils";
 import * as easing from './easing';
 
 
+interface IPlugin {
+    name: string;
+    description?: string;
+    mutateClass?: (Class: typeof Screw) => void;
+}
+
 export interface IKeyframe {
     offset?: number|'prev'; // Absolute screw time from 0. 'prev' means frame will begin simultaneously with previous frame.
     delay?: number; // Delay after prev frame completed. Can be negative. Don't use together with offset.
@@ -29,6 +35,7 @@ export interface IAnimatable {
     from?: any;
     to?: any;
     by?: any;
+    setter?: (target: any) => void;
 
     _target: any;
     _delta: any;
@@ -47,6 +54,12 @@ export default class Screw extends EventEmitter {
         this.items.forEach(item => {
             item.update(time);
         });
+    }
+
+    static plugins = new Set<IPlugin>();
+    static plugin(plugin: IPlugin) {
+        this.plugins.add(plugin);
+        if (plugin.mutateClass) plugin.mutateClass(this);
     }
 
 
@@ -96,15 +109,15 @@ export default class Screw extends EventEmitter {
             duration: 1000,
             repeat: 1,
             easing: easing.QuadraticInOut,
+            _screw: this,
             ...frame
         };
-        frame._screw = this;
         this.keyframes.push(frame);
         this._calculateTimings();
     }
 
     private _addScrew(screw: Screw) {
-        // Idea: write screw to object I
+        // Idea: write option screw to object IKeyframe
         throw Error('Not implemented method "_addScrew"');
     }
 
@@ -131,7 +144,6 @@ export default class Screw extends EventEmitter {
             frame._isCompleted = false;
         });
     }
-
 
     // Manage time state
 
@@ -273,6 +285,7 @@ export default class Screw extends EventEmitter {
                 for (const k in anim._delta) {
                     anim._target[k] = anim.from[k] + t * anim._delta[k];
                 }
+                if (anim.setter) anim.setter(anim._target);
             });
         }
 

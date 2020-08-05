@@ -25,7 +25,6 @@
     "verbose": true,
     "transform": {
       "^.+\\.(js|ts)$": "ts-jest"
-    },
-    "//transformIgnorePatterns": []
+    }
   }
 }

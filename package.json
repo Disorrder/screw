@@ -7,18 +7,17 @@
     "node": ">=9.0.0"
   },
   "scripts": {
+    "start": "npm run build",
     "build": "webpack --mode production",
     "build-dev": "webpack --mode development",
-    "start": "npm run build",
     "test": "npm run build-dev && jest --watch",
-    "release:major": "changelog -M && git add CHANGELOG.md && git commit -m 'updated CHANGELOG.md' && npm version major && git push origin && git push origin --tags",
-    "release:minor": "changelog -m && git add CHANGELOG.md && git commit -m 'updated CHANGELOG.md' && npm version minor && git push origin && git push origin --tags",
-    "release:patch": "changelog -p && git add CHANGELOG.md && git commit -m 'updated CHANGELOG.md' && npm version patch && git push origin && git push origin --tags"
+    "release": "standard-version",
+    "release:minor": "standard-version --release-as minor"
   },
   "devDependencies": {
     "clean-webpack-plugin": "^3.0.0",
-    "generate-changelog": "^1.8.0",
     "jest": "^26.2.2",
+    "standard-version": "^8.0.2",
     "ts-jest": "^26.1.4",
     "ts-loader": "^8.0.2",
     "typescript": "^3.9.7",

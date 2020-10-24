@@ -251,16 +251,19 @@ export default class Screw extends EventEmitter {
                 anim._delta = {};
 
                 if (anim.by) {
-                    for (const k in anim.by) {
+                    // use getOwnPropertyNames to avoid properties from proto
+                    Object.getOwnPropertyNames(anim.by).forEach(k => {
+                        if (typeof anim.by[k] !== 'number') return;
                         if (anim.from[k] == null) anim.from[k] = anim._target[k];
                         anim._delta[k] = anim.by[k];
-                    }
+                    });
                 }
                 if (anim.to) {
-                    for (const k in anim.to) {
+                    Object.getOwnPropertyNames(anim.to).forEach(k => {
+                        if (typeof anim.to[k] !== 'number') return;
                         if (anim.from[k] == null) anim.from[k] = anim._target[k];
                         anim._delta[k] = anim.to[k] - anim.from[k];
-                    }
+                    });
                 }
             });
         }

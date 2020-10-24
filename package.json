@@ -1,7 +1,7 @@
 {
   "name": "@disorrder/screw",
   "description": "Light-weight library for animating stuff, inspired by Tween and animejs",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "main": "build/screw.js",
   "engine": {
     "node": ">=9.0.0"

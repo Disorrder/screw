@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.1.1](https://github.com/Disorrder/screw/compare/v1.1.0...v1.1.1) (2020-10-24)
+
+
+### Bug Fixes
+
+* ignore non-number properties ([a54b0c5](https://github.com/Disorrder/screw/commit/a54b0c5c8b4f6729791c15af9e9c4d9b643a0ee6))
+
 ## 1.1.0 (2020-08-06)
 
 

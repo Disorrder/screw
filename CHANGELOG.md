@@ -2,8 +2,15 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
-### [1.1.1](https://github.com/Disorrder/screw/compare/v1.1.0...v1.1.1) (2020-10-24)
+### [1.1.2](https://github.com/Disorrder/screw/compare/v1.1.1...v1.1.2) (2020-10-24)
 
+
+### Bug Fixes
+
+* **oops:** add build from 1.1.1 ([3fc033c](https://github.com/Disorrder/screw/commit/3fc033c41e0666f290a986d562f6356293bc5238))
+
+### [1.1.1](https://github.com/Disorrder/screw/compare/v1.1.0...v1.1.1) (2020-10-24)
+### [DEPRECATED] Use 1.1.2 instead
 
 ### Bug Fixes
 

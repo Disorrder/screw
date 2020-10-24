@@ -74,4 +74,9 @@ const animation = new Screw()
 `later`
 
 ### Screw Babylon
-`never`
+`never?`
+
+
+## Publish
+- `npm run test`
+- `npm run build && npm run release` (use `release:minor` or `-- release-as major` if necessary)

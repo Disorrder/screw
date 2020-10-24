@@ -79,4 +79,6 @@ const animation = new Screw()
 
 ## Publish
 - `npm run test`
-- `npm run build && npm run release` (use `release:minor` or `-- release-as major` if necessary)
+- `npm run build && npm run release` (use `release:minor` or `-- release-as major` if necessary, default is patch version)
+- commit build files with amend
+- follow next instructions in console (Run `git push --follow-tags origin master && npm publish` to publish)

@@ -8,6 +8,7 @@ module.exports = {
     context: path.resolve('./src'),
     entry: {
         screw: './index.ts',
+        'plugins/playcanvas': '../plugins/playcanvas.js',
     },
     output: {
         path: path.resolve('./build'),

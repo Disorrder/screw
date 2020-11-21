@@ -28,12 +28,11 @@ const animation = new Screw()
     animate: [
         {
             target: entity.position, // pick a target
-            to: { x: 20 }, // and set new value
-            by: { y: 10 }, // or relative shift. Yep, you can use them together
+            to: { x: 20 } // and set new value
         },
         { // one more simultaneous action
             target: entity.rotation,
-            by: { x: 2 * Math.PI }
+            by: { x: 2 * Math.PI } // set relative shift instead of exact value
         }
     ],
     begin() {

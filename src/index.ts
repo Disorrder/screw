@@ -11,6 +11,5 @@ function defaultAnimation(time = 0) {
     if (!Screw.useDefaultAnimation) return;
     requestAnimationFrame(defaultAnimation);
     Screw.update(time);
-    // console.log('tick', time);
 }
 defaultAnimation(0);

@@ -2,6 +2,22 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [2.0.0-rc.1](https://github.com/Disorrder/screw/compare/v1.1.3...v2.0.0-rc.1) (2022-08-06)
+
+
+### ⚠ BREAKING CHANGES
+
+* remove `Screw.useDefaultAnimation`
+
+### Code Refactoring
+
+* remove `Screw.useDefaultAnimation` ([85a7982](https://github.com/Disorrder/screw/commit/85a79823f63cc58ca908a397f8c6979f52c419c9))
+
+
+### Miscellaneous Chores
+
+* release 2.0.0-rc.1 ([0424259](https://github.com/Disorrder/screw/commit/0424259e3caa946b4d658661ce056b830c5c5220))
+
 ### [1.1.3](https://github.com/Disorrder/screw/compare/v1.1.2...v1.1.3) (2020-11-21)
 
 ### [1.1.2](https://github.com/Disorrder/screw/compare/v1.1.1...v1.1.2) (2020-10-24)

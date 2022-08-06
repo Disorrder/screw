@@ -5,18 +5,35 @@ import * as easing from "./easing";
 import { IPlugin, IKeyframe, IScrewConstructorOptions } from "./types";
 
 export default class Screw extends EventEmitter {
-  static useDefaultAnimation = true;
-  static items = new Set<Screw>();
-  static update(time: number): void {
-    this.items.forEach((item) => {
-      item.update(time);
-    });
-  }
-
   static plugins = new Set<IPlugin>();
   static plugin(plugin: IPlugin) {
     this.plugins.add(plugin);
     if (plugin.mutateClass) plugin.mutateClass(this);
+  }
+
+  static screws = new Set<Screw>();
+  static rafId?: number;
+
+  static register(screw: Screw) {
+    this.screws.add(screw);
+    if (!this.rafId) {
+      this.update(0);
+    }
+  }
+
+  static update(time: number): void {
+    this.rafId = requestAnimationFrame(this.update.bind(this));
+    this.screws.forEach((item) => {
+      item.update(time);
+    });
+  }
+
+  static destroy() {
+    if (this.rafId) {
+      cancelAnimationFrame(this.rafId);
+    }
+    this.rafId = undefined;
+    this.screws.clear();
   }
 
   name = "Unnamed";
@@ -39,7 +56,7 @@ export default class Screw extends EventEmitter {
     if (options.timeScale) this.timeScale = options.timeScale;
 
     const Class = this.constructor as typeof Screw;
-    Class.items.add(this);
+    Class.register(this);
   }
 
   // Manage keyframes

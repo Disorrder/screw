@@ -1,15 +1,22 @@
 # Screw
-I'm not *screwing* you, this is really small library for simple animations. Inspired by Tweenjs and animejs.
+
+I'm not _screwing_ you, this is really small library for simple animations. Inspired by Tweenjs and animejs.
 
 ## Install
+
 ```
 npm i --save @disorrder/screw
 ```
 
-## Just show me a code
-With these instructions you won't *screw up*:
+```
+yarn add @disorrder/screw
+```
 
-``` javascript
+## Just show me a code
+
+With these instructions you won't _screw up_:
+
+```javascript
 import Screw, { easing } from '@disorrder/screw';
 
 const entity = {
@@ -62,21 +69,25 @@ const animation = new Screw()
 ### This animation was just a little screw in your big bucket of screws!
 
 ## API Reference
+
 `soon or later`
 
 ## Forget about nails, just screw it:
 
 ### Screw Playcanvas
+
 `soon`
 
 ### Screw Three.js
+
 `later`
 
 ### Screw Babylon
+
 `never?`
 
-
 ## Publish
-- `npm run test`
-- `npm run release` (use `release:minor` or `-- release-as major` if necessary, default is patch version)
+
+- `yarn test`
+- `yarn release` (use `release:minor` or `-- release-as major` if necessary, default is patch version)
 - follow next instructions in console (Run `git push --follow-tags origin master && npm publish` to publish)

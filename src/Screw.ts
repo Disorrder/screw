@@ -21,6 +21,10 @@ export default class Screw extends EventEmitter {
     }
   }
 
+  static remove(screw: Screw) {
+    this.screws.delete(screw);
+  }
+
   static update(time: number): void {
     this.rafId = requestAnimationFrame(this.update.bind(this));
     this.screws.forEach((item) => {
@@ -54,9 +58,6 @@ export default class Screw extends EventEmitter {
     if (options.name) this.name = options.name;
     if (options.repeat) this.repeat = options.repeat;
     if (options.timeScale) this.timeScale = options.timeScale;
-
-    const Class = this.constructor as typeof Screw;
-    Class.register(this);
   }
 
   // Manage keyframes
@@ -131,6 +132,10 @@ export default class Screw extends EventEmitter {
         this.on("stop", reject);
       });
     }
+
+    const Class = this.constructor as typeof Screw;
+    Class.register(this);
+
     this.active = true;
     this.timer.start();
     this.emit("play");
@@ -152,6 +157,10 @@ export default class Screw extends EventEmitter {
     this.timer.stop();
     this._resetFramesState();
     this.emit("stop");
+
+    const Class = this.constructor as typeof Screw;
+    Class.remove(this);
+
     return this;
   }
 

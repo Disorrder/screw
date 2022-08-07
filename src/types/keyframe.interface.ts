@@ -14,6 +14,7 @@ export interface IKeyframe {
   begin?: (frame: IKeyframe) => void;
   complete?: (frame: IKeyframe) => void;
 
+  // TODO: refactor, hide the privates
   _screw: Screw;
   _time: number; // frame current time [0 .. 1]
   _startTime: number; // Absolute screw time from 0. Affected by prev frame and delay

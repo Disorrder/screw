@@ -4,7 +4,7 @@ export interface IAnimatable {
   to?: any;
   by?: any;
   setter?: (target: any) => void;
-
-  _target: any;
-  _delta: any;
+  // TODO: refactor, hide the privates
+  _target?: any;
+  _delta?: any;
 }

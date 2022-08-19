@@ -17,4 +17,7 @@ export default defineConfig({
     },
     rollupOptions: {},
   },
+  define: {
+    __VERSION: JSON.stringify(process.env.npm_package_version),
+  },
 });

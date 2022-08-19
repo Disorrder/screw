@@ -98,13 +98,21 @@ export default class Screw extends EventEmitter {
   private _calculateTimings() {
     this.duration = 0;
     this.keyframes.forEach((frame, i) => {
-      const prevFrame: Partial<IKeyframe> = this.keyframes[i - 1] || {};
-      let startTime = prevFrame._endTime || 0;
-      if (frame.delay) startTime += frame.delay;
-      if (typeof frame.offset === "number") startTime = frame.offset;
-      if (frame.offset === "prev") startTime = prevFrame._startTime || 0;
+      const prevFrame: Partial<IKeyframe> = this.keyframes[i - 1];
+      let startTime = prevFrame?._endTime || 0;
+
+      const { offset, delay = 0, duration = 1000, repeat = 1 } = frame;
+
+      if (offset === "prev") {
+        startTime = prevFrame?._startTime || 0;
+      } else if (typeof offset === "number") {
+        startTime = offset;
+      } else {
+        startTime += delay;
+      }
+
       frame._startTime = Math.max(startTime, 0);
-      frame._endTime = startTime + frame.duration * frame.repeat;
+      frame._endTime = startTime + duration * repeat;
       frame._isBegan = false;
       frame._isCompleted = false;
 

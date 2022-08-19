@@ -282,7 +282,11 @@ export default class Screw extends EventEmitter {
       // repeating
       // TODO: add yoyo
       time %= 1;
-      if (time === 0) time = 1; //?
+      if (time === 0) time = 1; // fix modulus become 0 on last frame
+    }
+
+    if (time < frame._time) {
+      this._frameRepeat(frame);
     }
 
     frame._time = time;
@@ -298,7 +302,10 @@ export default class Screw extends EventEmitter {
     }
 
     if (frame.onUpdate) frame.onUpdate(frame);
-    if (frame.run) frame.run(frame);
+  }
+
+  private _frameRepeat(frame: IKeyframe) {
+    if (frame.onRepeat) frame.onRepeat(frame);
   }
 
   private _frameComplete(frame: IKeyframe) {

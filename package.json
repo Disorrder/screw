@@ -1,7 +1,7 @@
 {
   "name": "@disorrder/screw",
   "description": "Light-weight library for animating stuff, inspired by Tween and animejs",
-  "version": "2.0.0-rc.5",
+  "version": "2.0.0-rc.6",
   "type": "module",
   "scripts": {
     "dev": "vite",

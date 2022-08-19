@@ -10,9 +10,10 @@ export interface IKeyframe {
   easing: easing.Easing;
   animate: IAnimatable[];
 
-  run?: (frame: IKeyframe) => void;
-  begin?: (frame: IKeyframe) => void;
-  complete?: (frame: IKeyframe) => void;
+  onUpdate?: (frame: IKeyframe) => void;
+  onBegin?: (frame: IKeyframe) => void;
+  onComplete?: (frame: IKeyframe) => void;
+  onRepeat?: (frame: IKeyframe) => void;
 
   // TODO: refactor, hide the privates
   _screw: Screw;

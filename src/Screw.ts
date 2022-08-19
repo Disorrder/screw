@@ -214,9 +214,12 @@ export default class Screw extends EventEmitter {
         if (
           !frame._isBegan &&
           (this.time <= frame._endTime || frame.duration === 0)
-        )
+        ) {
           this._frameBegin(frame);
-        if (dt && this.time <= frame._endTime) this._frameRun(frame);
+        }
+        if (dt && this.time <= frame._endTime) {
+          this._frameRun(frame);
+        }
       }
 
       if (this.time >= frame._endTime) {
@@ -268,7 +271,7 @@ export default class Screw extends EventEmitter {
       });
     }
     frame._isBegan = true;
-    if (frame.begin) frame.begin(frame);
+    if (frame.onBegin) frame.onBegin(frame);
   }
 
   private _frameRun(frame: IKeyframe) {
@@ -276,9 +279,10 @@ export default class Screw extends EventEmitter {
     time = clamp(time, 0, frame.repeat);
 
     if (time > 1) {
-      // repeating. TODO: add yoyo
+      // repeating
+      // TODO: add yoyo
       time %= 1;
-      if (time === 0) time = 1;
+      if (time === 0) time = 1; //?
     }
 
     frame._time = time;
@@ -293,12 +297,13 @@ export default class Screw extends EventEmitter {
       });
     }
 
+    if (frame.onUpdate) frame.onUpdate(frame);
     if (frame.run) frame.run(frame);
   }
 
   private _frameComplete(frame: IKeyframe) {
     this._frameRun(frame);
     frame._isCompleted = true;
-    if (frame.complete) frame.complete(frame);
+    if (frame.onComplete) frame.onComplete(frame);
   }
 }

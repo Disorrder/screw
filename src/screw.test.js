@@ -15,7 +15,7 @@ test("basic example", (done) => {
           by: { y: 10 },
         },
       ],
-      begin(frame) {
+      onBegin(frame) {
         const dt = performance.now() - initTime;
         expect(dt).toBeLessThan(2);
 
@@ -23,7 +23,7 @@ test("basic example", (done) => {
         expect(target.x).toBe(10);
         expect(target.y).toBe(10);
       },
-      complete(frame) {
+      onComplete(frame) {
         const dt = performance.now() - initTime;
         expect(dt).toBeLessThan(1000 + TIME_ERROR);
 
@@ -41,14 +41,14 @@ test("basic example", (done) => {
           by: { x: -20 },
         },
       ],
-      begin() {
+      onBegin() {
         const dt = performance.now() - initTime;
         expect(dt).toBeLessThan(1200 + TIME_ERROR);
 
         expect(target.x).toBe(20);
         // y will be modified in next frame
       },
-      complete() {
+      onComplete() {
         const dt = performance.now() - initTime;
         expect(dt).toBeLessThan(1500 + TIME_ERROR);
 
@@ -64,14 +64,14 @@ test("basic example", (done) => {
           to: { y: 0 },
         },
       ],
-      begin() {
+      onBegin() {
         const dt = performance.now() - initTime;
         expect(dt).toBeLessThan(1000 + TIME_ERROR);
 
         expect(target.x).toBe(20);
         expect(target.y).toBe(20);
       },
-      complete() {
+      onComplete() {
         const dt = performance.now() - initTime;
         expect(dt).toBeLessThan(1600 + TIME_ERROR);
 
@@ -82,11 +82,11 @@ test("basic example", (done) => {
     .add({
       offset: 1100,
       duration: 0,
-      begin() {
+      onBegin() {
         const dt = performance.now() - initTime;
         expect(dt).toBeLessThan(1100 + TIME_ERROR);
       },
-      complete() {
+      onComplete() {
         const dt = performance.now() - initTime;
         expect(dt).toBeLessThan(1100 + TIME_ERROR);
       },
@@ -94,11 +94,11 @@ test("basic example", (done) => {
     .add({
       offset: "prev",
       duration: 0,
-      begin() {
+      onBegin() {
         const dt = performance.now() - initTime;
         expect(dt).toBeLessThan(1100 + TIME_ERROR);
       },
-      complete() {
+      onComplete() {
         const dt = performance.now() - initTime;
         expect(dt).toBeLessThan(1100 + TIME_ERROR);
       },

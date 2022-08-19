@@ -42,7 +42,7 @@ const animation = new Screw()
             by: { x: 2 * Math.PI } // set relative shift instead of exact value
         }
     ],
-    begin() {
+    onBegin() {
         // run some code before keyframe start
         entity.visible = true;
     }
@@ -54,12 +54,12 @@ const animation = new Screw()
         target() { return entity.getScale() },
         to: { x: 0, y: 0 }
     }],
-    run(frame) {
+    onUpdate(frame) {
         // Calls every animation update
         const scale = frame.animate[0]._target;
         entity.setScale(scale);
     },
-    complete() {
+    onComplete() {
         entity.visible = false;
     }
 })

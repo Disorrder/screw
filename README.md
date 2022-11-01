@@ -89,5 +89,11 @@ const animation = new Screw()
 ## Publish
 
 - `yarn test`
+- add commit for please-release
+
+```bash
+git commit --allow-empty -m "chore: release 2.0.0" -m "Release-As: 2.0.0"
+```
+
 - `yarn release` (use `release:minor` or `-- release-as major` if necessary, default is patch version)
 - follow next instructions in console (Run `git push --follow-tags origin master && npm publish` to publish)

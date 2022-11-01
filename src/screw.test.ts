@@ -3,8 +3,18 @@ import Screw from "./screw"; // to test build
 
 const TIME_ERROR = 35;
 
+// at top
+declare const global: any;
+
+// before test
+global.requestAnimationFrame = (cb: any) =>
+  setImmediate(() => cb(performance.now()));
+
+// test
 test("basic example", (done) => {
   let initTime = performance.now();
+  console.log("init", initTime);
+
   const target = { x: 10, y: 10 };
   const animation = new Screw()
     .add({
@@ -17,7 +27,8 @@ test("basic example", (done) => {
       ],
       onBegin(frame) {
         const dt = performance.now() - initTime;
-        expect(dt).toBeLessThan(2);
+        expect(dt).toBeLessThan(TIME_ERROR);
+        console.log("Frame 1 onBegin", dt);
 
         const target = frame.animate[0]._target;
         expect(target.x).toBe(10);
@@ -26,6 +37,7 @@ test("basic example", (done) => {
       onComplete(frame) {
         const dt = performance.now() - initTime;
         expect(dt).toBeLessThan(1000 + TIME_ERROR);
+        console.log("Frame 1 onComplete", dt);
 
         const target = frame.animate[0]._target;
         expect(target.x).toBe(20);
@@ -44,15 +56,19 @@ test("basic example", (done) => {
       onBegin() {
         const dt = performance.now() - initTime;
         expect(dt).toBeLessThan(1200 + TIME_ERROR);
+        console.log("Frame 2 onBegin", dt);
 
         expect(target.x).toBe(20);
+        // expect(target.y).toBe(20);
         // y will be modified in next frame
       },
       onComplete() {
         const dt = performance.now() - initTime;
         expect(dt).toBeLessThan(1500 + TIME_ERROR);
+        console.log("Frame 2 onComplete", dt);
 
         expect(target.x).toBe(0);
+        // expect(target.y).toBe(20);
       },
     })
     .add({
@@ -67,6 +83,7 @@ test("basic example", (done) => {
       onBegin() {
         const dt = performance.now() - initTime;
         expect(dt).toBeLessThan(1000 + TIME_ERROR);
+        console.log("Frame 3 onBegin", dt);
 
         expect(target.x).toBe(20);
         expect(target.y).toBe(20);
@@ -74,6 +91,7 @@ test("basic example", (done) => {
       onComplete() {
         const dt = performance.now() - initTime;
         expect(dt).toBeLessThan(1600 + TIME_ERROR);
+        console.log("Frame 3 onComplete", dt);
 
         expect(target.x).toBe(0);
         expect(target.y).toBe(0);
@@ -85,10 +103,12 @@ test("basic example", (done) => {
       onBegin() {
         const dt = performance.now() - initTime;
         expect(dt).toBeLessThan(1100 + TIME_ERROR);
+        console.log("Frame 4 onBegin", dt);
       },
       onComplete() {
         const dt = performance.now() - initTime;
         expect(dt).toBeLessThan(1100 + TIME_ERROR);
+        console.log("Frame 4 onComplete", dt);
       },
     })
     .add({
@@ -97,13 +117,20 @@ test("basic example", (done) => {
       onBegin() {
         const dt = performance.now() - initTime;
         expect(dt).toBeLessThan(1100 + TIME_ERROR);
+        console.log("Frame 5 onBegin", dt);
       },
       onComplete() {
         const dt = performance.now() - initTime;
         expect(dt).toBeLessThan(1100 + TIME_ERROR);
+        console.log("Frame 5 onComplete", dt);
       },
     })
     .play();
 
-  animation.on("complete", done);
+  animation.on("complete", () => {
+    const dt = performance.now() - initTime;
+    expect(dt).toBeLessThan(1600 + TIME_ERROR);
+    console.log("Animation onComplete", dt);
+    done();
+  });
 });
